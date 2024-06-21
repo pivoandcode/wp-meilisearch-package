@@ -1,0 +1,38 @@
+{
+  "name": "pivoandcode/wordpress-meilisearch",
+  "type": "package",
+  "description": "This is my package wordpress-meilisearch",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "KIKOmanasijev",
+      "email": "hristijan@digitalnode.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "PivoAndCode\\WordpressMeilisearch\\": "src/"
+    }
+  },
+  "require": {
+    "php": "^8.1",
+    "meilisearch/meilisearch-php": "^1.8",
+    "guzzlehttp/guzzle": "^7.8",
+    "http-interop/http-factory-guzzle": "^1.0"
+  },
+  "extra": {
+    "acorn": {
+      "providers": [
+        "PivoAndCode\\WordpressMeilisearch\\Providers\\WordpressMeilisearchServiceProvider"
+      ],
+      "aliases": {
+        "WordpressMeilisearch": "PivoAndCode\\WordpressMeilisearch\\Facades\\WordpressMeilisearch"
+      }
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
+  }
+}
