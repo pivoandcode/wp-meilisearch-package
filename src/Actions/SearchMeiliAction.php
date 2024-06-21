@@ -7,9 +7,11 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 class SearchMeiliAction {
-    public function handle(array $data){
-        $client = app()->make(\Meilisearch\Client::class);
+    public function __construct(
+        private \Meilisearch\Client $client
+    ) {}
 
+    public function handle(array $data){
         $data = Validator::make( $data, [
             'post_type'      => [
                 'required',
@@ -22,7 +24,7 @@ class SearchMeiliAction {
 
         $filters = $this->buildFilters($data);
 
-        $results = $client->index( $data['post_type'] )
+        $results = $this->client->index( $data['post_type'] )
           ->search(
               data_get( $data, 'q', '' ),
               array(
